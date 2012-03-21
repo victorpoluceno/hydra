@@ -1,0 +1,7 @@
+*env
+*.pyc
+pip-log.txt
+*.webm
+*.mp4
+*.db
+node_modules

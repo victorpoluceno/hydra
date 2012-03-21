@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Hydra</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
+    <script src="{{ STATIC_URL }}js/jquery-1.6.1.min.js"></script>
+    <script src="{{ STATIC_URL }}js/modernizr-2.5.3.js"></script>
+    <script src="{{ STATIC_URL }}js/socket.io.js"></script>
+    <script src="{{ STATIC_URL }}js/store.js"></script>
+    <script src="{{ STATIC_URL }}js/common.js"></script>
+    <script src="{{ STATIC_URL }}js/hydra.js"></script>
+</head>
+<body>    
+    <video id="player" class="player" width="100%" height="100%" style="display:none;">
+        <!--<source id="videoSource" src="{{ STATIC_URL }}media/big_buck_bunny_640x360_2.28.mp4 }}" type="video/mp4"/>-->
+    </video>
+
+    <form id="config" style="display:none">
+        <label for="name">Name</label>
+        <input type="text" id="name">
+        <input type="submit" value="Submit" />
+    </form>
+
+    <p id="status" sytle="display:none"></p>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            main('{{ server }}');
+        });   
+    </script>
+</body>
+</html>

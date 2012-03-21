@@ -1,4 +1,21 @@
-var io = require('socket.io').listen(8080);
+var io = require('socket.io').listen(9000);
+var sqlite3 = require('sqlite3').verbose();
+
+var db = new sqlite3.Database('hydra/hydra.db');
+
+db.each("SELECT m.* FROM player_device d, player_playlist p, " +
+      "player_playlistmovie pl, player_movie m " +
+      "where d.guid=8898 and d.playlist_id=p.id and "+
+      "pl.playlist_id=p.id and m.id=pl.movie_id and "+
+      "d.playlist_id!=null", function(err, row) {
+    if (err != null){
+      console.log(err);  
+    }
+    console.log(row);
+});
+
+db.close();
+
 io.enable('browser client minification'); // send minified client
 io.enable('browser client etag'); // apply etag caching logic based on version number
 io.enable('browser client gzip'); // gzip the file

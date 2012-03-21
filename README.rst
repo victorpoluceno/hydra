@@ -12,7 +12,7 @@ Install
     curl http://npmjs.org/install.sh | sudo sh
      
 ::
-    npm install socket.io
+    npm install socket.io sqlite3
 
 ::
     virtualenv --no-site-packages env

@@ -6,10 +6,10 @@ Install
 -------
 
 ::
-    sudo apt-get install python-dev python-virtualenv libevent-1.4-2 libevent1-dev nodejs nodejs-dev curl
+    sudo apt-get install build-essential python-dev python-virtualenv libevent-1.4-2 libevent1-dev nodejs nodejs-dev curl
 
 ::
-    sudo curl http://npmjs.org/install.sh | sh 
+    curl http://npmjs.org/install.sh | sudo sh
      
 ::
     npm install socket.io
@@ -28,4 +28,6 @@ Run
 
 ::
     node app_socketio.js &
+
+::
     cd hydra; python manage.py runserver 0.0.0.0:8000

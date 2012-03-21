@@ -3,17 +3,10 @@ from django.db import models
 from player.validators import FileValidator
 
 
-class Campaing(models.Model):
-    title = models.CharField(max_length=250)
-    playlist = models.ForeignKey('player.PlayList')
-
-    def __unicode__(self):
-        return self.title
-
-
 class PlayList(models.Model):
     title = models.CharField(max_length=250)
-    movies = models.ManyToManyField('player.Movie')
+    movies = models.ManyToManyField('player.Movie',
+        through='player.PlayListMovie')
 
     def __unicode__(self):
         return self.title
@@ -28,6 +21,12 @@ class Movie(models.Model):
     def __unicode__(self):
         return self.original_file.name
 
+
+class PlayListMovie(models.Model):
+    movie = models.ForeignKey(Movie)
+    playlist = models.ForeignKey(PlayList)
+    order = models.IntegerField(unique=True)
+    
 
 class Device(models.Model):
     title = models.CharField(max_length=250)

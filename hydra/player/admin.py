@@ -1,8 +1,18 @@
 from django.contrib import admin
 
-from player.models import Campaing, PlayList, Movie, Device
+from player.models import PlayList, PlayListMovie, Movie, Device
 
-admin.site.register(Campaing)
-admin.site.register(PlayList)
+
+class PlayListMovieInline(admin.TabularInline):
+    model = PlayListMovie
+
+
+class PlayListAdmin(admin.ModelAdmin):
+    inlines = [
+        PlayListMovieInline,
+    ]
+
+
+admin.site.register(PlayList, PlayListAdmin)
 admin.site.register(Movie)
 admin.site.register(Device)

@@ -1,60 +1,12 @@
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-    display: block;
-}
 body {
-    line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-
-body {
-    background-color: transparent;
+    background-color: transparent center top;
     overflow:hidden;
     height:100%;
     width:100%;
+    margin:0 auto;
 }
+
+/* PALYER TAG STYLES */
 
 .main {
     overflow:hidden;
@@ -67,3 +19,59 @@ body {
     overflow:hidden;
     border-bottom:none;
 }
+
+/* END OF TAG STYLE --------------> */
+
+/* DEVICE ASSIGNEMENT TAG STYLES */
+
+.container {
+
+    width:940px;
+    margin:150px auto;
+    text-align:center;
+}
+    .container form#device-assign {
+        position:relative;
+    }
+
+        .container form#device-assign label.device-label {
+                position:absolute;
+                top:-25px;
+                left:273px;
+                font-size:18px;
+        }
+
+        .container form#device-assign input.device-name {
+            padding: 6px 4px; 
+            width:300px;
+        }
+
+        .container form#device-assign input.device-save {
+            padding: 6px 4px;
+            width:75px;
+            height:37px;
+        }
+
+    .container #status h1 {
+        color:#2c2c2c;
+        line-height:16px
+    }
+
+    .container #status h6 {
+        color:#999999;
+        font-size:14px;
+    }
+
+/* END OF TAG STYLE --------------> */
+
+/* JQUERY VALIDATOR TAG STYLE START*/
+
+label.error { 
+    color: red;
+    position:absolute;
+    top:40px;
+    left:275px;
+}
+
+/* END OF TAG STYLE --------------> */
+

@@ -27,9 +27,15 @@ function next(){
 }
 
 function set(data){
+    var list = Array();
+    for (var i=0; i < data.length; i++){
+      var input = data[i];
+      list.push(input.substr(0, input.lastIndexOf('.')) || input);
+    }
+
     // dont net to update if is same play list
-    if (!$(playlist).compare(data)) {
-        playlist = data;
+    if (!$(playlist).compare(list)) {
+        playlist = list;
         first();
     }
 }
@@ -54,7 +60,7 @@ function main(uri){
         //message("System", "connected!");
         if (guid != undefined) {
             socket.emit("load", guid, function (data){
-            if (data){
+            if (data && data.length != 0){
                 set(data); // set play list
                 $("#player").show();
                 $("#status").hide();

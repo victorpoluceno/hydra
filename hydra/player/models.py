@@ -25,12 +25,12 @@ class Movie(models.Model):
 class PlayListMovie(models.Model):
     movie = models.ForeignKey(Movie)
     playlist = models.ForeignKey(PlayList)
-    order = models.IntegerField(unique=True)
+    sort = models.IntegerField(unique=True)
     
 
 class Device(models.Model):
     title = models.CharField(max_length=250)
-    guid = models.IntegerField()
+    guid = models.CharField(max_length=100)
     playlist = models.ForeignKey('player.PlayList', blank=True, null=True)
 
     def __unicode__(self):

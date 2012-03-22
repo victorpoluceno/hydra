@@ -23,6 +23,10 @@ Install
 ::
     pip install -r requiremets.txt
 
+::
+
+    cd hydra; python manage.py syncdb
+
 Run
 ---
 

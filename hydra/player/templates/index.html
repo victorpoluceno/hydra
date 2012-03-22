@@ -16,17 +16,18 @@
         <video id="player" class="player" width="100%" height="100%" style="display:none;">
             <!--<source id="videoSource" src="{{ STATIC_URL }}media/big_buck_bunny_640x360_2.28.mp4 }}" type="video/mp4"/>-->
         </video>
-        <div class="container">
+        <div class="container" id="device" style="display: none;">
             <form id="device-assign" method="get">
                 <label for="device-name" class="device-label">Enter device name:</label>
                 <input name="device-name" class="required device-name" type="text"  >
                 <input class="device-save" type="submit" value="save">
             </form>
-            <div id="status" style="display:none">
-                <h1>Waiting for assigned playlist...</h1>
-                <h6>You can assign your playlist trought the admin console.</h6>
-            </div>
-        </div>
+       </div>
+
+       <div id="status" style="display:none">
+	  <h1>Waiting for assigned playlist...</h1>
+	  <h6>You can assign your playlist trought the admin console.</h6>
+       </div>
 
         <script type="text/javascript">
 

@@ -52,7 +52,7 @@ function main(uri){
     var guid = store.get('guid');
     if (guid == undefined){
         // show config form if there is no guid saved
-        $("#config").show();
+        $("#device").show();
     }
 
     var socket = io.connect(uri);
@@ -65,7 +65,9 @@ function main(uri){
                 $("#player").show();
                 $("#status").hide();
             } else {
-                $("#status").html("Waiting for a play list to " + guid);
+                //$("#status").html("Waiting for a play list to " + guid);
+		console.log(guid);
+		$("#status").show();
                 //message("Client", "no play list found!");
             }
         });    
@@ -88,8 +90,8 @@ function main(uri){
         console.log(from, msg);
     }
 
-    $("#config").bind('submit', function (){
-        $("#config").hide();
+    $("#device-assign").bind('submit', function (){
+        $("#device").hide();
 
         // generate and save guid
         guid = guidGenerator();
@@ -97,12 +99,14 @@ function main(uri){
 
         // emit signal to load a play list
         socket.emit("load", guid, function (data){
-            if (data != false){
+            if (data != false && data.length != 0){
                 set(data); // set play list
                 $("#player").show();
                 $("#status").hide();
             } else {
-                $("#status").html("Waiting for a play list to " + guid);
+                //$("#status").html("Waiting for a play list to " + guid);
+		console.log(guid);
+		$("#status").show();
                 //message("Client", "no play list found!");
             }
         });

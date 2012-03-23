@@ -1,9 +1,7 @@
 body {
-    background-color: transparent center top;
-    overflow:hidden;
-    height:100%;
-    width:100%;
-    margin:0 auto;
+    background-color: #000;
+    overflow: auto;
+    margin:0;
 }
 
 /* PALYER TAG STYLES */
@@ -13,11 +11,13 @@ body {
 }
 
 .player {
-    border:none;
+    border:0;
     margin:0;
     padding:0;
     overflow:hidden;
     border-bottom:none;
+    border-right:none;
+    background:none;
 }
 
 /* END OF TAG STYLE --------------> */
@@ -51,16 +51,22 @@ body {
             width:75px;
             height:37px;
         }
+    
+#status {
+    width:940px;
+    margin:150px auto;
+    text-align:center;
+}
 
-    .container #status h1 {
-        color:#2c2c2c;
-        line-height:16px
-    }
+#status h1 {
+    color:#2c2c2c;
+    line-height:16px
+}
 
-    .container #status h6 {
-        color:#999999;
-        font-size:14px;
-    }
+#status h6 {
+    color:#999999;
+    font-size:14px;
+}
 
 /* END OF TAG STYLE --------------> */
 

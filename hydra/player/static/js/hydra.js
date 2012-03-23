@@ -66,8 +66,8 @@ function main(uri){
                 $("#status").hide();
             } else {
                 //$("#status").html("Waiting for a play list to " + guid);
-		console.log(guid);
-		$("#status").show();
+                console.log(guid);
+                $("#status").show();
                 //message("Client", "no play list found!");
             }
         });    
@@ -91,25 +91,26 @@ function main(uri){
     }
 
     $("#device-assign").bind('submit', function (){
-        $("#device").hide();
+        if ($("#device-assign").validate()){
+    		$("#device").hide();
 
-        // generate and save guid
-        guid = guidGenerator();
-        store.set('guid', guid);
+    		// generate and save guid
+    		guid = guidGenerator();
+    		store.set('guid', guid);
 
-        // emit signal to load a play list
-        socket.emit("load", guid, function (data){
-            if (data != false && data.length != 0){
-                set(data); // set play list
-                $("#player").show();
-                $("#status").hide();
-            } else {
-                //$("#status").html("Waiting for a play list to " + guid);
-		console.log(guid);
-		$("#status").show();
-                //message("Client", "no play list found!");
-            }
-        });
-        return false;
+    		// emit signal to load a play list
+    		socket.emit("load", guid, function (data){
+    		    if (data != false && data.length != 0){
+    			set(data); // set play list
+    			$("#player").show();
+    			$("#status").hide();
+    		    } else {
+    			//$("#status").html("Waiting for a play list to " + guid);
+    			$("#status").show();
+    			//message("Client", "no play list found!");
+    		    }
+    		});
+            return false;
+        }
     });
 };

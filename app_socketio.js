@@ -32,7 +32,7 @@ io.sockets.on('connection', function (socket) {
 	    }
 	    if (row){
 	        console.log(row);
-                list.push("media/player/" + row.original_file);
+                list.push(row.original_file);
             }
 	}, function (){
        	        console.log(list);

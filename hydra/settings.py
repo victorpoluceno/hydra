@@ -49,8 +49,7 @@ USE_L10N = True
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 if DEBUG:
     MEDIA_ROOT = os.path.join(SITE_ROOT, 'media/player/')
-
-print MEDIA_ROOT
+    print MEDIA_ROOT
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.

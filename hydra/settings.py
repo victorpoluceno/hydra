@@ -1,7 +1,7 @@
 # Django settings for hydra project.
 
 import os
-SITE_ROOT = '/'.join(os.path.dirname(__file__).split('/')[0:-1])
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -47,7 +47,10 @@ USE_I18N = True
 USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
-MEDIA_ROOT = os.path.join(SITE_ROOT, 'hydra/player/media/')
+if DEBUG:
+    MEDIA_ROOT = os.path.join(SITE_ROOT, 'media/player/')
+
+print MEDIA_ROOT
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.

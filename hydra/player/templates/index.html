@@ -7,7 +7,8 @@
         <script src="{{ STATIC_URL }}js/jquery-1.6.1.min.js"></script>
         <script src="{{ STATIC_URL }}js/modernizr-2.5.3.js"></script>
         <script src="{{ STATIC_URL }}js/socket.io.js"></script>
-        <script src="{{ STATIC_URL }}js/store.js"></script>
+        <!--<script src="{{ STATIC_URL }}js/store.js"></script>
+        <script src="{{ STATIC_URL }}js/amplify.store.js"></script>-->
         <script src="{{ STATIC_URL }}js/common.js"></script>
         <script src="{{ STATIC_URL }}js/hydra.js"></script>
         <script src="{{ STATIC_URL }}js/jquery.validate.min.js"></script>
@@ -17,22 +18,30 @@
             <!--<source id="videoSource" src="{{ STATIC_URL }}media/big_buck_bunny_640x360_2.28.mp4 }}" type="video/mp4"/>-->
         </video>
         <div class="container" id="device" style="display: none;">
+            <form id="device-assign" action="/" method="post">{% csrf_token %}
+                {{ form.non_field_errors }}
+                <label for="id_title" class="device-label">Enter device name:</label>
+                <input id="id_title" name="title" class="required device-name" type="text">
+                <input id="id_guid" name="guid" type="hidden">
+                <input class="device-save" type="submit" value="Save"/>
+            </form>
+
+            <!--
             <form id="device-assign" method="get">
                 <label for="device-name" class="device-label">Enter device name:</label>
                 <input name="device-name" class="required device-name" type="text"  >
                 <input class="device-save" type="submit" value="save">
-            </form>
-       </div>
+            </form>-->
+        </div>
 
-       <div id="status" style="display:none">
-	  <h1>Waiting for assigned playlist...</h1>
-	  <h6>You can assign your playlist trought the admin console.</h6>
-       </div>
+        <div id="status" style="display:none">
+            <h1>Waiting for assigned playlist...</h1>
+            <h6>You can assign your playlist trought the admin console.</h6>
+        </div>
 
         <script type="text/javascript">
-
             $(document).ready(function(){
-                main('{{ server }}');
+                main('{{ setup.server }}');
             });   
         </script>
     </body>

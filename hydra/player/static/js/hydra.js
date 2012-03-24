@@ -40,6 +40,29 @@ function set(data){
     }
 }
 
+function setCookie(c_name,value,exdays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate() + exdays);
+var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+document.cookie=c_name + "=" + c_value;
+}
+
+function getCookie(c_name)
+{
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i<ARRcookies.length;i++)
+{
+  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  x=x.replace(/^\s+|\s+$/g,"");
+  if (x==c_name)
+    {
+    return unescape(y);
+    }
+  }
+}
+
 function main(uri){
     playlist = null;
     current = null;
@@ -49,13 +72,27 @@ function main(uri){
         next();
     });
 
-    var guid = store.get('guid');
-    if (guid == undefined){
+    //var guid = window.localStorage.getItem('guid');
+    var guid = getCookie("guid");
+    alert(guid);
+    if (guid == undefined || guid == null){
         // show config form if there is no guid saved
         $("#device").show();
     }
 
     var socket = io.connect(uri);
+    socket.on('reconnect', function () {
+        console.log('System', 'Reconnected to the server');
+    });
+
+    socket.on('reconnecting', function () {
+        console.log('System', 'Attempting to re-connect to the server');
+    });
+
+    socket.on('error', function (e) {
+        console.log('System', e ? e : 'A unknown error occurred');
+    });
+
     socket.on('connect', function () {
         //message("System", "connected!");
         if (guid != undefined) {
@@ -74,42 +111,29 @@ function main(uri){
         }        
     });
 
-    socket.on('reconnect', function () {
-        //message('System', 'Reconnected to the server');
-    });
-
-    socket.on('reconnecting', function () {
-        //message('System', 'Attempting to re-connect to the server');
-    });
-
-    socket.on('error', function (e) {
-        //message('System', e ? e : 'A unknown error occurred');
-    });
-
-    function message (from, msg) {
-        console.log(from, msg);
-    }
-
     $("#device-assign").bind('submit', function (){
         if ($("#device-assign").validate()){
     		$("#device").hide();
 
-    		// generate and save guid
-    		guid = guidGenerator();
-    		store.set('guid', guid);
+            // generate and save guid
+            guid = guidGenerator();
+            setCookie("guid", guid, 365);
+            $("#id_guid").val(guid);
 
     		// emit signal to load a play list
     		socket.emit("load", guid, function (data){
     		    if (data != false && data.length != 0){
-    			set(data); // set play list
-    			$("#player").show();
-    			$("#status").hide();
+    	           set(data); // set play list
+    	           $("#player").show();
+    	           $("#status").hide();
     		    } else {
-    			//$("#status").html("Waiting for a play list to " + guid);
-    			$("#status").show();
-    			//message("Client", "no play list found!");
+    	           //$("#status").html("Waiting for a play list to " + guid);
+    	           $("#status").show();
+    	           //message("Client", "no play list found!");
     		    }
     		});
+            return true;
+        } else {
             return false;
         }
     });

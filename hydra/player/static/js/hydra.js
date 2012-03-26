@@ -74,7 +74,6 @@ function main(uri){
 
     //var guid = window.localStorage.getItem('guid');
     var guid = getCookie("guid");
-    alert(guid);
     if (guid == undefined || guid == null){
         // show config form if there is no guid saved
         $("#device").show();

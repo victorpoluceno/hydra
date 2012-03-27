@@ -1,18 +1,27 @@
 from django.contrib import admin
 
-from player.models import PlayList, PlayListMovie, Movie, Device
+from player.models import Campaign, Schedule ,Device
+
+#TODO add other columns main list view
 
 
-class PlayListMovieInline(admin.TabularInline):
-    model = PlayListMovie
+class ScheduleInline(admin.TabularInline):
+    model = Schedule
 
 
-class PlayListAdmin(admin.ModelAdmin):
+
+class CampaignAdmin(admin.ModelAdmin):
     inlines = [
-        PlayListMovieInline,
+        #ScheduleInline,
     ]
 
 
-admin.site.register(PlayList, PlayListAdmin)
-admin.site.register(Movie)
-admin.site.register(Device)
+class DeviceAdmin(admin.ModelAdmin):
+    inlines = [
+        #ScheduleInline,
+    ]
+
+
+admin.site.register(Schedule)
+admin.site.register(Campaign, CampaignAdmin)
+admin.site.register(Device, DeviceAdmin)

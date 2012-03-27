@@ -1,13 +1,9 @@
 # Django settings for hydra project.
-
-import os
-SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Victor Godoy Poluceno', 'victorpoluceno@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -120,7 +116,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'hydra.player',
-    'gunicorn'
 )
 
 # A sample logging configuration. The only tangible logging

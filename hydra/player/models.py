@@ -3,35 +3,29 @@ from django.db import models
 from player.validators import FileValidator
 
 
-class PlayList(models.Model):
+class Campaign(models.Model):
     title = models.CharField(max_length=250)
-    movies = models.ManyToManyField('player.Movie',
-        through='player.PlayListMovie')
-
-    def __unicode__(self):
-        return self.title
-
-
-class Movie(models.Model):
-    original_file = models.FileField(upload_to='movies/',
+    devices = models.ManyToManyField('player.Device',
+        through='player.Schedule')
+    movie = models.FileField(upload_to='movies/',
         validators=[FileValidator(max_size=25 * 1204 * 1024,
         allowed_mimetypes=('video/mp4', 'video/webm'),
         allowed_extensions=('mp4', 'webm'))])
 
     def __unicode__(self):
-        return self.original_file.name
+        return self.title
 
 
-class PlayListMovie(models.Model):
-    movie = models.ForeignKey(Movie)
-    playlist = models.ForeignKey(PlayList)
-    sort = models.IntegerField(unique=True)
-    
+class Schedule(models.Model):
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    device = models.ForeignKey('player.Device')
+    campaign = models.ForeignKey('player.Campaign') 
+
 
 class Device(models.Model):
     title = models.CharField(max_length=250)
     guid = models.CharField(max_length=100)
-    playlist = models.ForeignKey('player.PlayList', blank=True, null=True)
 
     def __unicode__(self):
         return self.title

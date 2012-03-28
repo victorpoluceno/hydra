@@ -13,7 +13,7 @@ def index(request):
         if form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
             form.save()
-            #return HttpResponseRedirect('/') # Redirect after POST
+            return HttpResponseRedirect('/') # Redirect after POST
     else:
         form = forms.DeviceAssignForm() # An unbound form
     setup = json.load(open('setup.json'))

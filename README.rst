@@ -2,11 +2,19 @@ hydra
 ========
 
 
-Install
--------
+Install with vagrant (only once)
+--------------------------------
 
 ::
-    sudo apt-get install build-essential python-dev python-virtualenv libevent-1.4-2 libevent1-dev nodejs nodejs-dev curl
+
+    vagrant up
+    vagrant ssh
+
+::
+    cd vagrant
+
+::
+    sudo apt-get install build-essential python-dev python-virtualenv nodejs nodejs-dev curl
 
 ::
     curl http://npmjs.org/install.sh | sudo sh
@@ -24,14 +32,22 @@ Install
     pip install -r requiremets.txt
 
 ::
+    python hydra/manage.py syncdb
 
-    cd hydra; python manage.py syncdb
 
-Run
----
+Run (every time)
+----------------
+
+::
+    vagrant up
+    vagrant ssh
+
+::
+    cd vagrant
 
 ::
     node app_socketio.js &
 
 ::
-    cd hydra; python manage.py runserver 0.0.0.0:8000
+	source env/bin/activate
+    python hydra/manage.py runserver 0.0.0.0:8000

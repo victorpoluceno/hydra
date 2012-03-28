@@ -1,4 +1,4 @@
-var io = require('socket.io').listen(9000);
+var io = require('socket.io').listen(8080);
 var sqlite3 = require('sqlite3').verbose();
 
 var db = new sqlite3.Database('hydra/hydra.db');
@@ -35,9 +35,9 @@ io.sockets.on('connection', function (socket) {
                 list.push("media/player/" + row.original_file);
             }
 	}, function (){
-       	        console.log(list);
-		fn(list);
-	    }
+       		console.log(list);
+			fn(list);
+		}
 	);
     });
     //socket.emit('set', {list: videoSourceList});

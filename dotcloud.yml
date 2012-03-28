@@ -1,6 +1,6 @@
 www:
- 	type: python
+    type: python
 
 socket:
- 	type: nodejs
- 	approot: hydra-socket
+    type: nodejs
+    approot: hydra-socket

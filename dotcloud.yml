@@ -4,3 +4,4 @@ www:
 socket:
     type: nodejs
     approot: hydra-socket
+    node_version: v0.6.5

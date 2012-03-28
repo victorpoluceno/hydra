@@ -1,6 +1,6 @@
 from django.db import models
 
-from player.validators import FileValidator
+from . import validators
 
 
 class Campaign(models.Model):
@@ -8,7 +8,7 @@ class Campaign(models.Model):
     devices = models.ManyToManyField('player.Device',
         through='player.Schedule')
     movie = models.FileField(upload_to='movies/',
-        validators=[FileValidator(max_size=25 * 1204 * 1024,
+        validators=[validators.FileValidator(max_size=25 * 1204 * 1024,
         allowed_mimetypes=('video/mp4', 'video/webm'),
         allowed_extensions=('mp4', 'webm'))])
 

@@ -1,4 +1,4 @@
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'hellodjango.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'hydra.settings'
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()

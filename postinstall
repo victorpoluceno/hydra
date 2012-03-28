@@ -1,5 +1,5 @@
 #!/bin/sh
-python hydra/manage.py syncdb --noinput
+python hydra/manage.py syncdb --noinput --settings=settings_production
 python mkadmin.py
 mkdir -p /home/dotcloud/data/media /home/dotcloud/volatile/static
-python hydra/manage.py collectstatic --noinput
+python hydra/manage.py collectstatic --noinput --settings=settings_production

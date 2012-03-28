@@ -2,6 +2,11 @@ www:
     type: python
 
 socket:
-    type: nodejs
+    type: custom
+    buildscript: nodejs/builder
+    node_version: v0.6.5
+    ports:
+        www: http
+    process: node server.js
     approot: hydra-socket
     node_version: v0.6.5

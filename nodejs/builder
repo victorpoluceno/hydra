@@ -1,0 +1,33 @@
+#!/bin/bash
+
+packages_dir=node_modules
+node_root=/opt/node
+
+[ "$SERVICE_NODE_VERSION" ] && 
+[ "$SERVICE_NODE_VERSION" != "$(node --version)" ] &&
+(
+    rm -rf $node_root/*
+    cd $node_root
+    curl -L https://github.com/joyent/node/tarball/$SERVICE_NODE_VERSION | tar -zxf-
+    cd joyent-node-*
+    ./configure --prefix=$node_root
+    make
+    make install
+)
+
+cd ${SERVICE_APPROOT:=.}
+
+# Some user have their packages in their repository let's remove them,
+# there is good chances that we are on a different architecture anyway.
+[ -e "$packages_dir" ] && rm -rf "$packages_dir"
+
+# Fool npm to install packages in $HOME, this way we don't need to
+# re-install them at each push
+[ -d "$HOME/data/$packages_dir" ] || mkdir -p "$HOME/data/$packages_dir"
+ln -s "$HOME/data/$packages_dir/"
+
+# Finally install the specified dependencies.
+[ -f package.json ] && npm install
+
+rsync -aH --exclude "data" ./ $HOME/
+

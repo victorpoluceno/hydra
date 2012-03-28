@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from player.models import Campaign, Schedule ,Device
+from . models import Campaign, Schedule ,Device
 
 
 admin.site.register(Schedule)

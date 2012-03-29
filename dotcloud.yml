@@ -1,5 +1,10 @@
 www:
     type: python
     approot: hydra-www
+    buildscript: builder
+    processes:
+        app: /home/dotcloud/env/bin/python hydra/run.py
+    ports:
+        www: http
     systempackages:
         - libevent-dev

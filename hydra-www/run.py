@@ -4,10 +4,12 @@ import os
 import sys
 
 import django.core.handlers.wsgi
+
 from socketio import SocketIOServer
+from socketio.handler import WebSocketHandler
 
 
-PORT = 8000
+PORT = 80
 PROJECT_ROOT = os.path.dirname(__file__)
 
 

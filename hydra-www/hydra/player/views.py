@@ -21,7 +21,7 @@ def index(request):
     else:
         form = forms.DeviceAssignForm() # An unbound form
     setup = json.load(open('setup.json'))
-    return render_to_response('index.html', {'setup': setup, 'form': form}, 
+    return render_to_response('index.html', {'socketio': request.META['HTTP_HOST'], 'form': form}, 
             context_instance=RequestContext(request))
     
 

@@ -9,7 +9,7 @@ from socketio import SocketIOServer
 from socketio.handler import WebSocketHandler
 
 
-PORT = 80
+PORT = 42800
 PROJECT_ROOT = os.path.dirname(__file__)
 
 

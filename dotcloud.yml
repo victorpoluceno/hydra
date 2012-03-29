@@ -3,7 +3,7 @@ www:
     approot: hydra-www
     buildscript: builder
     processes:
-        app: /home/dotcloud/env/bin/python hydra/run.py
+        app: /home/dotcloud/env/bin/python run.py
     ports:
         www: http
     systempackages:

@@ -1,6 +1,8 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
+from django.core import serializers
+
 
 import json
 
@@ -20,7 +22,6 @@ def index(request):
             return HttpResponseRedirect('/') # Redirect after POST
     else:
         form = forms.DeviceAssignForm() # An unbound form
-    setup = json.load(open('setup.json'))
     return render_to_response('index.html', {'socketio': request.META['HTTP_HOST'], 'form': form}, 
             context_instance=RequestContext(request))
     
@@ -35,8 +36,9 @@ def socketio(request):
 
         def on_guid(self, val):
             print val
-            print models.Campaign.objects.all()
-            self.emit('load', 'sdsdsdsdsds')
+            campaign_list = models.Campaign.objects.all()
+            data = serializers.serialize("json", campaign_list)
+            self.emit('load', json.loads(data))
             
     socketio_manage(request.environ, {'': PlayNameSpace})
     return HttpResponse()

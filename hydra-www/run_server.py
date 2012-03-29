@@ -12,7 +12,7 @@ PORT = 8000
 PROJECT_ROOT = os.path.dirname(__file__)
 
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'hydra.settings_production'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'hydra.settings'
 sys.path.insert(0, os.path.join(PROJECT_ROOT, "hydra/"))
 
 

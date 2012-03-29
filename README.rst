@@ -5,49 +5,44 @@ hydra
 Install with vagrant (only once)
 --------------------------------
 
-::
+Run vagrant and get into vm::
 
     vagrant up
     vagrant ssh
 
-::
+Install system packages::
+
+    sudo apt-get update && sudo apt-get upgrade
     sudo apt-get install build-essential python-dev python-virtualenv libevent1-dev 
 
-::
-    curl http://npmjs.org/install.sh | sudo sh
-     
-::
-    npm install socket.io sqlite3
+Create a python virtual env::
 
-::
     virtualenv --no-site-packages env
 
-::
+Activate and install required python packages::
+
     source env/bin/activate
+    pip install -r /vagrant/hydra-www/requirements.txt
 
-::
-    pip install -r /vagrant/hydra-www/requiremets.txt
+Go to apps dir and create database::
 
-::
-    cd /vagrant/
+    cd /vagrant/hydra-www/
     python hydra/manage.py syncdb
 
 
 Run (every time)
 ----------------
 
-::
+Run vagrant and get into vm::
+
     vagrant up
     vagrant ssh
 
-::
+Activate python virtual env::
+
     source env/bin/activate
 
-::
-    cd vagrant
+Go to apps dir and run the devel server::
 
-::
-    node app_socketio.js &
-
-::
-	python hydra/manage.py runserver 0.0.0.0:8000
+    cd /vagrant/hydra-www/
+	python run_server.py runserver

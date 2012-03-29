@@ -4,7 +4,11 @@ from django.http import HttpResponseRedirect
 
 import json
 
-from . import forms 
+from . import forms
+from . import models
+
+from socketio import socketio_manage
+from socketio.namespace import BaseNamespace
 
 
 def index(request):
@@ -19,3 +23,20 @@ def index(request):
     setup = json.load(open('setup.json'))
     return render_to_response('index.html', {'setup': setup, 'form': form}, 
             context_instance=RequestContext(request))
+    
+
+def socketio(request):
+    class PlayNameSpace(BaseNamespace):
+        def recv_connect(self):
+            print 'horray, connect'
+
+        def recv_initialize(self):
+            print 'horray, recv_initialize'
+
+        def on_guid(self, val):
+            print val
+            print models.Campaign.objects.all()
+            self.emit('load', 'sdsdsdsdsds')
+            
+    socketio_manage(request.environ, {'': PlayNameSpace})
+    return HttpResponse()

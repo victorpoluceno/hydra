@@ -1,12 +1,5 @@
 www:
     type: python
     approot: hydra-www
-
-socket:
-    type: custom
-    buildscript: nodejs/builder
-    ports:
-        www: http
-    process: node server.js
-    approot: hydra-socket
-    node_version: v0.6.0
+    systempackages:
+        - libevent-dev

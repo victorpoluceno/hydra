@@ -11,10 +11,7 @@ Install with vagrant (only once)
     vagrant ssh
 
 ::
-    cd vagrant
-
-::
-    sudo apt-get install build-essential python-dev python-virtualenv nodejs nodejs-dev curl
+    sudo apt-get install build-essential python-dev python-virtualenv libevent1-dev 
 
 ::
     curl http://npmjs.org/install.sh | sudo sh
@@ -29,9 +26,10 @@ Install with vagrant (only once)
     source env/bin/activate
 
 ::
-    pip install -r requiremets.txt
+    pip install -r /vagrant/hydra-www/requiremets.txt
 
 ::
+    cd /vagrant/
     python hydra/manage.py syncdb
 
 
@@ -43,11 +41,13 @@ Run (every time)
     vagrant ssh
 
 ::
+    source env/bin/activate
+
+::
     cd vagrant
 
 ::
     node app_socketio.js &
 
 ::
-	source env/bin/activate
-    python hydra/manage.py runserver 0.0.0.0:8000
+	python hydra/manage.py runserver 0.0.0.0:8000

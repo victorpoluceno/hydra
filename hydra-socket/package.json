@@ -1,8 +1,0 @@
-{
-  "name": "hydra-socket",
-  "version": "1.0.0",
-  "dependencies": {
-    "socket.io": "",
-    "sqlite3": ""
-  }
-}

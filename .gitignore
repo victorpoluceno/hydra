@@ -4,4 +4,5 @@ pip-log.txt
 *.webm
 *.mp4
 *.db
+.vagrant
 node_modules

@@ -8,7 +8,7 @@ import django.core.handlers.wsgi
 from socketio import SocketIOServer
 
 
-PORT = 42800
+PORT = 8000
 PROJECT_ROOT = os.path.dirname(__file__)
 
 

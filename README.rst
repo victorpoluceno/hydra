@@ -10,6 +10,11 @@ Run vagrant and get into vm::
     vagrant up
     vagrant ssh
 
+Create upload dir::
+
+    mkdir -p /srv/hydra/media/player/
+    chown -R vagrant:vagrant /srv
+
 Install system packages::
 
     sudo apt-get update && sudo apt-get upgrade

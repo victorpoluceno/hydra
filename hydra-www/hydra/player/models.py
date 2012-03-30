@@ -20,7 +20,10 @@ class Schedule(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     device = models.ForeignKey('player.Device')
-    campaign = models.ForeignKey('player.Campaign') 
+    campaign = models.ForeignKey('player.Campaign')
+
+    def __unicode__(self):
+        return '%s-%s' % (self.device.title, self.campaign.title) 
 
 
 class Device(models.Model):

@@ -1,6 +1,6 @@
 body {
-    overflow: auto;
     margin:0;
+    padding:0;
 }
 
 /* PALYER TAG STYLES */
@@ -9,14 +9,21 @@ body {
     overflow:hidden;
 }
 
-.player {
-    border:0;
-    margin:0;
-    padding:0;
-    overflow:hidden;
-    border-bottom:none;
-    border-right:none;
-    background:none;
+video poster {
+
+}
+
+video.player {
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -o-object-fit: fill;
+    -moz-object-fit: fill;
+    border:0 none!important;
+    margin:0!important;
+    padding:0!important;    
 }
 
 /* END OF TAG STYLE --------------> */
@@ -79,4 +86,3 @@ label.error {
 }
 
 /* END OF TAG STYLE --------------> */
-

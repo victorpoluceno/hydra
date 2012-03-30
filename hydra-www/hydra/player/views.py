@@ -22,8 +22,8 @@ def index(request):
             return HttpResponseRedirect('/') # Redirect after POST
     else:
         form = forms.DeviceAssignForm() # An unbound form
-    return render_to_response('index.html', {'socketio': request.META['HTTP_HOST'], 'form': form}, 
-            context_instance=RequestContext(request))
+    return render_to_response('index.html', {'socketio': request.META['HTTP_HOST'],
+            'form': form}, context_instance=RequestContext(request))
     
 
 def socketio(request):
@@ -36,9 +36,17 @@ def socketio(request):
 
         def on_guid(self, val):
             print val
-            campaign_list = models.Campaign.objects.all()
-            data = serializers.serialize("json", campaign_list)
-            self.emit('load', json.loads(data))
+            
+            data = []
+            campaign_list = models.Schedule.objects.filter(device__guid=val)
+            if campaign_list:
+                for r in campaign_list:                    
+                    data.append({'movie': r.campaign.movie.url, 
+                        'start_time': r.start_time.isoformat(), 
+                        'end_time': r.end_time.isoformat()})
+
+            print data
+            self.emit('load', data)
             
     socketio_manage(request.environ, {'': PlayNameSpace})
     return HttpResponse()

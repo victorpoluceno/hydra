@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Hydra Project</title>
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/normalize.css">
+        <title>Hydra</title>
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
         <script src="{{ STATIC_URL }}js/jquery-1.6.1.min.js"></script>
         <script src="{{ STATIC_URL }}js/modernizr-2.5.3.js"></script>
@@ -13,7 +12,8 @@
         <script src="{{ STATIC_URL }}js/jquery.validate.min.js"></script>
     </head>
     <body> 
-        <video id="player" class="player" width="100%" height="100%" style="display:none;">
+        <video id="player" class="player" width="100%" height="100%" loop style="display:none;">
+
         </video>
         <div class="container" id="device" style="display: none;">
             <form id="device-assign" action="/" method="post">{% csrf_token %}

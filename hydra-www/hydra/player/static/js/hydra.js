@@ -1,11 +1,8 @@
 function main(uri){
-    playlist = null;
-    current = null;
-
-    $("#player").bind('ended', function(){
+    /*$("#player").bind('ended', function(){
         // play next vido
         next();
-    });
+    });*/
 
     var guid = getCookie("guid");
     if (guid == undefined || guid == null){
@@ -34,9 +31,8 @@ function main(uri){
     });
 
     socket.on('load', function(data){
-        alert('load');
         if (data != false && data.length != 0){
-           set(data); // set play list
+           play(data[0]['movie']); // set play list
            $("#player").show();
            $("#status").hide();
         } else {

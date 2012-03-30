@@ -47,8 +47,8 @@ function main(uri){
                         $("#player").show();
                         $("#status").hide();
                         $("#poster").hide();
-                        break;
                     }
+                    break;
                     //window.clearInterval(interval_id);
                 }
             }

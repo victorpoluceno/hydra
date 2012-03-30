@@ -16,12 +16,12 @@
 
         </video>
         <div class="container" id="device" style="display: none;">
-            <form id="device-assign" action="/" method="post">{% csrf_token %}
+            <form id="device-assign" method="post">{% csrf_token %}
                 {{ form.non_field_errors }}
                 <label for="id_title" class="device-label">Enter device name:</label>
                 <input id="id_title" name="title" class="required device-name" type="text">
                 <input id="id_guid" name="guid" type="hidden">
-                <input class="device-save" type="submit" value="Save"/>
+                <input id="id_save" name="save"class="device-save" type="button" value="Save"/>
             </form>
         </div>
 

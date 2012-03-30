@@ -3,11 +3,13 @@ function main(uri){
         // play next vido
         next();
     });*/
-
+    var interval_id;
     var guid = getCookie("guid");
     if (guid == undefined || guid == null){
         // show config form if there is no guid saved
         $("#device").show();
+    } else {
+        $("#status").show();
     }
 
     var socket = io.connect(uri);
@@ -32,28 +34,41 @@ function main(uri){
 
     socket.on('load', function(data){
         if (data != false && data.length != 0){
-           play(data[0]['movie']); // set play list
-           $("#player").show();
-           $("#status").hide();
-        } else {
-           $("#status").show();
+            play(data[0]['movie']); // set play list
+            $("#player").show();
+            $("#status").hide();
+            window.clearInterval(interval_id);
         }
     });
 
-    $("#device-assign").bind('submit', function (){
+    $("#id_save").bind('click', function (){
         if ($("#device-assign").validate()){
-    		$("#device").hide();
+            $("#device").hide();
 
             // generate and save guid
             guid = guidGenerator();
             setCookie("guid", guid, 365);
             $("#id_guid").val(guid);
 
-    		// emit signal to load a play list
-    		socket.emit("guid", guid);
+            $.post('device', {'guid': guid, 'title': $("#id_title").val()}, 
+                function(data) {
+                    // emit signal to load a play list
+                    socket.emit("guid", guid);
+                }
+            );
+
+            $("#status").show();
+
+            function check (guid, socket){
+                if (guid){
+                    socket.emit('guid', guid);
+                }
+            }
+
+            interval_id = window.setInterval(function() {
+                check(guid, socket);
+            }, 1000);
             return true;
-        } else {
-            return false;
         }
     });
 };

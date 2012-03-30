@@ -50,4 +50,4 @@ Activate python virtual env::
 Go to apps dir and run the devel server::
 
     cd /vagrant/hydra-www/
-	python run_server.py runserver
+    python run_server.py runserver

@@ -1,4 +1,11 @@
 # Django settings for hydra project.
+import json
+
+with open('/home/dotcloud/environment.json') as f:
+  env = json.load(f)
+
+print 'Application Name: {0}'.format(env['DOTCLOUD_SERVICE_NAME'])
+
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
@@ -10,12 +17,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'hydra.db',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'hydra',
+        'USER': env['DOTCLOUD_DATA_SQL_LOGIN'],
+        'PASSWORD': env['DOTCLOUD_DATA_SQL_PASSWORD'],
+        'HOST': env['DOTCLOUD_DATA_SQL_HOST'],
+        'PORT': env['DOTCLOUD_DATA_SQL_PORT'],
     }
 }
 

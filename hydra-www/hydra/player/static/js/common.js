@@ -1,3 +1,14 @@
+/* use a function for the exact format desired... */
+function ISODateString(d){
+ function pad(n){return n<10 ? '0'+n : n}
+ return d.getUTCFullYear()+'-'
+      + pad(d.getMonth()+1)+'-'
+      + pad(d.getDate())+'T'
+      + pad(d.getHours())+':'
+      + pad(d.getMinutes())+':'
+      + pad(d.getSeconds())+'Z'}
+
+
 function setCookie(c_name, value, exdays){
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + exdays);

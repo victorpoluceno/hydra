@@ -35,15 +35,41 @@ function main(uri){
 
     socket.on('load', function(data){
         if (data != false && data.length != 0){
-            if (data[0]['movie'] != current){
-                play(data[0]['movie']); // set play list
-                current = data[0]['movie'];    
+            var flag = false;
+            for (var i=0; i < data.length; i++){
+                var d = data[i];
+                var now = ISODateString(new Date());
+                if (d['start_time'] <= now && d['end_time'] >= now){
+                    flag = true;
+                    if (d['movie'] != current){
+                        play(d['movie']); // set play list
+                        current = d['movie'];
+                        $("#player").show();
+                        $("#status").hide();
+                        $("#poster").hide();
+                        break;
+                    }
+                    //window.clearInterval(interval_id);
+                }
             }
-            $("#player").show();
-            $("#status").hide();
-            window.clearInterval(interval_id);
+            if (!flag){
+                $("video")[0].pause();
+                $("#player").hide();
+                $("#status").hide();
+                $("#poster").show();
+            }
         }
     });
+
+    function check (guid, socket){
+        if (guid){
+            socket.emit('guid', guid);
+        }
+    }
+
+    interval_id = window.setInterval(function() {
+        check(guid, socket);
+    }, 10000);
 
     $("#id_save").bind('click', function (){
         if ($("#device-assign").validate()){
@@ -62,15 +88,6 @@ function main(uri){
             );
 
             $("#status").show();
-            function check (guid, socket){
-                if (guid){
-                    socket.emit('guid', guid);
-                }
-            }
-
-            interval_id = window.setInterval(function() {
-                check(guid, socket);
-            }, 10000);
             return true;
         }
     });

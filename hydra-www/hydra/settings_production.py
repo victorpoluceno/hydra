@@ -22,7 +22,7 @@ DATABASES = {
         'USER': env['DOTCLOUD_DATA_SQL_LOGIN'],
         'PASSWORD': env['DOTCLOUD_DATA_SQL_PASSWORD'],
         'HOST': env['DOTCLOUD_DATA_SQL_HOST'],
-        'PORT': env['DOTCLOUD_DATA_SQL_PORT'],
+        'PORT': int(env['DOTCLOUD_DATA_SQL_PORT']),
     }
 }
 

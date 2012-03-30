@@ -1,5 +1,5 @@
 # Django settings for hydra project.
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

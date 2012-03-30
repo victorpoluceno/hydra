@@ -12,8 +12,8 @@ Run vagrant and get into vm::
 
 Create upload dir::
 
-    mkdir -p /srv/hydra/media/player/
-    chown -R vagrant:vagrant /srv
+    sudo mkdir -p /srv/hydra/media/player/
+    sudo chown -R vagrant:vagrant /srv
 
 Install system packages::
 

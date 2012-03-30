@@ -3,6 +3,7 @@ function main(uri){
         // play next vido
         next();
     });*/
+    var current = null;
     var interval_id;
     var guid = getCookie("guid");
     if (guid == undefined || guid == null){
@@ -34,7 +35,10 @@ function main(uri){
 
     socket.on('load', function(data){
         if (data != false && data.length != 0){
-            play(data[0]['movie']); // set play list
+            if (data[0]['movie'] != current){
+                play(data[0]['movie']); // set play list
+                current = data[0]['movie'];    
+            }
             $("#player").show();
             $("#status").hide();
             window.clearInterval(interval_id);
@@ -58,7 +62,6 @@ function main(uri){
             );
 
             $("#status").show();
-
             function check (guid, socket){
                 if (guid){
                     socket.emit('guid', guid);
@@ -67,7 +70,7 @@ function main(uri){
 
             interval_id = window.setInterval(function() {
                 check(guid, socket);
-            }, 1000);
+            }, 10000);
             return true;
         }
     });

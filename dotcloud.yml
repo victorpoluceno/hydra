@@ -8,3 +8,6 @@ www:
         www: http
     systempackages:
         - libevent-dev
+
+data:
+    type: postgresql

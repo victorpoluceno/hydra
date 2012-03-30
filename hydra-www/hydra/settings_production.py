@@ -4,8 +4,6 @@ import json
 with open('/home/dotcloud/environment.json') as f:
   env = json.load(f)
 
-print 'Application Name: {0}'.format(env['DOTCLOUD_SERVICE_NAME'])
-
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 

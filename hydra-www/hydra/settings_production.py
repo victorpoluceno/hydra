@@ -17,7 +17,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hydra',
         'USER': env['DOTCLOUD_DATA_SQL_LOGIN'],
         'PASSWORD': env['DOTCLOUD_DATA_SQL_PASSWORD'],

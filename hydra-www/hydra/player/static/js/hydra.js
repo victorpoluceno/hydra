@@ -53,10 +53,10 @@ function main(uri){
                 }
             }
             if (!flag){
-                $("video")[0].pause();
-                $("#player").hide();
                 $("#status").hide();
+                $("#player").hide();
                 $("#poster").show();
+                $("video")[0].pause();
             }
         }
     });

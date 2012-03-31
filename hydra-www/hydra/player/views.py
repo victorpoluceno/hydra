@@ -31,17 +31,16 @@ def device(request):
     return HttpResponse(400)
 
 
-def socketio(request):
-    class PlayNameSpace(BaseNamespace):
+@csrf_exempt
+def api(request):
+    class PlayerNameSpace(BaseNamespace):
         def recv_connect(self):
             print 'horray, connect'
 
         def recv_initialize(self):
             print 'horray, recv_initialize'
 
-        def on_guid(self, val):
-            print val
-            
+        def on_guid(self, val):            
             data = []
             campaign_list = models.Schedule.objects.filter(device__guid=val)
             if campaign_list:
@@ -50,9 +49,8 @@ def socketio(request):
                         'start_time': r.start_time.isoformat(), 
                         'end_time': r.end_time.isoformat()})
 
-            print data
             if data:
                 self.emit('load', data)
             
-    socketio_manage(request.environ, {'': PlayNameSpace})
+    print socketio_manage(request.environ, {'': PlayerNameSpace})
     return HttpResponse()

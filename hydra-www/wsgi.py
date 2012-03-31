@@ -5,14 +5,14 @@ monkey.patch_all()
 
 import os
 
-from hydra import settings as settings
+from hydra import settings_production
 
 import django.core.handlers.wsgi
 from socketio import SocketIOServer
 
 from django.core.management import setup_environ
-setup_environ(settings)
+setup_environ(settings_production)
 
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'hydra.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'hydra.settings_production'
 application = django.core.handlers.wsgi.WSGIHandler()

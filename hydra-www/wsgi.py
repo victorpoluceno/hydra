@@ -14,5 +14,5 @@ from django.core.management import setup_environ
 setup_environ(settings)
 
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'hydra.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'hydra.settings_production'
 application = django.core.handlers.wsgi.WSGIHandler()

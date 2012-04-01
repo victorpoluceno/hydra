@@ -1,9 +1,9 @@
 www:
-    type: python
+    type: custom
     approot: hydra-www
     buildscript: hydra-www/builder
     processes:
-        app: /home/dotcloud/env/bin/gunicorn -k gunicorn_worker.GeventSocketIOWorker -b 0.0.0.0:42800 wsgi:application
+        app: /home/dotcloud/env/bin/gunicorn -k gunicorn_worker.GeventSocketIOWorker -b 0.0.0.0:$PORT_WWW wsgi:application
     ports:
         www: http
     systempackages:

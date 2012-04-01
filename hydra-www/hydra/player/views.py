@@ -32,13 +32,15 @@ def device(request):
 
 
 @csrf_exempt
-def api(request):
+def socketio(request):
     class PlayerNameSpace(BaseNamespace):
         def recv_connect(self):
-            print 'horray, connect'
+            #print 'horray, connect'
+            pass
 
         def recv_initialize(self):
-            print 'horray, recv_initialize'
+            #print 'horray, recv_initialize'
+            pass
 
         def on_guid(self, val):            
             data = []
@@ -52,5 +54,5 @@ def api(request):
             if data:
                 self.emit('load', data)
             
-    print socketio_manage(request.environ, {'': PlayerNameSpace})
+    socketio_manage(request.environ, {'': PlayerNameSpace})
     return HttpResponse()

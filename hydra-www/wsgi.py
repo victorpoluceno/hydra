@@ -4,12 +4,14 @@ from gevent import monkey;
 monkey.patch_all()
 
 import os
+import sys
+
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "hydra/"))
 
 from hydra import settings_production as settings
 
 import django.core.handlers.wsgi
-from socketio import SocketIOServer
-
 from django.core.management import setup_environ
 setup_environ(settings)
 

@@ -46,17 +46,17 @@ function main(uri){
                         current = d['movie'];
                         $("#player").show();
                         $("#status").hide();
-                        //$("#poster").hide();
+                        $("#poster").hide();
                     }
                     break;
                     //window.clearInterval(interval_id);
                 }
             }
             if (!flag){
+                $("video")[0].pause();
                 $("#status").hide();
                 $("#player").hide();
-                //$("#poster").show();
-                $("video")[0].pause();
+                $("#poster").show();
             }
         }
     });

@@ -44,19 +44,25 @@ function main(uri){
                     if (d['movie'] != current){
                         play(d['movie']); // set play list
                         current = d['movie'];
-                        $("#player").show();
                         $("#status").hide();
-                        $("#poster").hide();
+                        $("#player").show();
+                        //$("#poster").hide();
                     }
                     break;
                     //window.clearInterval(interval_id);
                 }
             }
             if (!flag){
-                $("video")[0].pause();
-                $("#status").hide();
-                $("#player").hide();
-                $("#poster").show();
+                //if ($("video")[0].src != null && $("video")[0].src != ""){
+                    //$("video")[0].pause();
+                    //$("#status").hide();
+                    //$("#player").hide();
+                    //$("#poster").show();        
+                //}
+                //$("video")[0].pause();
+                //$("#status").hide();
+                //$("#player").hide();
+                //$("#poster").show();
             }
         }
     });

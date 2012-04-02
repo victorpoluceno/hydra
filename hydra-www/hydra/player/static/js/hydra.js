@@ -57,6 +57,7 @@ function main(uri){
                 $("#player").hide();
                 $("#poster").show();
                 $("video")[0].pause();
+                $("video")[0].src = null;
             }
         }
     });

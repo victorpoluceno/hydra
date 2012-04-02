@@ -46,7 +46,7 @@ function main(uri){
                         current = d['movie'];
                         $("#player").show();
                         $("#status").hide();
-                        $("#poster").hide();
+                        //$("#poster").hide();
                     }
                     break;
                     //window.clearInterval(interval_id);
@@ -55,7 +55,7 @@ function main(uri){
             if (!flag){
                 $("#status").hide();
                 $("#player").hide();
-                $("#poster").show();
+                //$("#poster").show();
                 $("video")[0].pause();
             }
         }

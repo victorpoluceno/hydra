@@ -43,7 +43,7 @@ def socketio(request):
             pass
 
         def on_guid(self, val):   
-            print "guid: ", guid         
+            print "guid: ", val         
             data = []
             campaign_list = models.Schedule.objects.filter(device__guid=val)
             if campaign_list:

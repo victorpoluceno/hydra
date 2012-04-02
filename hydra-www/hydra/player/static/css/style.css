@@ -23,7 +23,8 @@ video.player {
     -moz-object-fit: fill;
     border:0 none!important;
     margin:0!important;
-    padding:0!important;    
+    padding:0!important;
+    display:none;
 }
 
 /* END OF TAG STYLE --------------> */

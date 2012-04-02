@@ -42,7 +42,8 @@ def socketio(request):
             #print 'horray, recv_initialize'
             pass
 
-        def on_guid(self, val):            
+        def on_guid(self, val):   
+            print "guid: ", guid         
             data = []
             campaign_list = models.Schedule.objects.filter(device__guid=val)
             if campaign_list:
@@ -51,7 +52,9 @@ def socketio(request):
                         'start_time': r.start_time.isoformat(), 
                         'end_time': r.end_time.isoformat()})
 
+            print 'Data found: ', data
             if data:
+                print 'Emiting load....'
                 self.emit('load', data)
             
     socketio_manage(request.environ, {'': PlayerNameSpace})

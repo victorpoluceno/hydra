@@ -6,9 +6,7 @@ function play(path){
     // remove extension
     var name = path.substr(0, path.lastIndexOf('.')) || path;
     
-    var t = $('<video id="player" class="player" width="100%" height="100%" loop>
-            <source>
-        </video>');
+    var t = $('<video id="player" class="player" width="100%" height="100%" loop><source></video>');
     $("body").append(t);
 
     //getElementByTagName('video')[0].addEventListener('error', function(event) { 

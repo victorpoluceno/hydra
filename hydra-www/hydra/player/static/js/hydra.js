@@ -53,6 +53,9 @@ function main(uri){
                 }
             }
             if (!flag){
+                $("video")[0].src = null;
+                $("video").load();
+                
                 //if ($("video")[0].src != null && $("video")[0].src != ""){
                     //$("video")[0].pause();
                     //$("#status").hide();

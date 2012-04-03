@@ -53,6 +53,7 @@ function main(uri){
                 }
             }
             if (!flag){
+                $('video').remove();
                 //if ($("video")[0].src != null || $("video")[0].src != ""){
                 //    $("video")[0].src = null;
                 //    $("video").load();

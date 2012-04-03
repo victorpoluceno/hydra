@@ -8,5 +8,9 @@ function play(path){
     $("video")[0].type = "video/" + extension;
     $("video")[0].src = name + "." + extension;
     $("video")[0].load();
-    $("video")[0].play();    
+    //$("video")[0].play();    
 }
+
+$("video")[0].addEventListener('canplay', function(e) {
+  this.play();
+}, false);
